@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        .motion-container {
+            height: 400px;
+            width: 100%;
+            position: relative;
+            display: block;
+            background: url('images/hospital.jpg') center center no-repeat;
+            background-size: cover;
+        }
+
+        .motion {
+            position: absolute;
+            height: 400px;
+            width: 100%;
+            z-index: 7000;
+            background: url('images/motion.png')  no-repeat;
+            animation: move 5s linear infinite;
+            opacity:.5;
+        }
+        @keyframes move {
+            0%, 100% {
+                background-position: -300px 20px;
+            }
+
+            50% {
+                background-position: 200% 0;
+            }
+        }
+        .left-motion {
+            height: 400px;
+            position: absolute;
+            z-index: 9000;
+            left: 10%;
+            animation: nudge 200s linear;
+            animation-direction: normal;
+        }
+       .left-motion .person, .right-motion .person { height:400px;}
+        .right-motion {
+            height: 400px;
+            position: absolute;
+            right: 60%;
+            z-index: 8000;
+            animation: nudge 300s linear;
+            animation-direction: reverse;
+        }
+
+        .pulse {
+            animation: pulse 3s ease infinite;
+            position: absolute;
+            width: 40px;
+        }
+        .doc-popup {
+            right: 70px;
+            top: 165px;
+        }
+        .patient-popup {
+            left: 150px;
+            top: 200px;
+        }
+
+        @keyframes nudge {
+            0% {
+                transform: translate(10%, 0);
+            }
+
+            100% {
+                transform: translate(100%, 0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .4;
+            }
+        }
+
+        .white-box {
+            border-radius: 5px;
+            background: #fff;
+            padding: 10px 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #666;
+            font-size: 16px;          
+            position: absolute;
+            display: none;
+        }
+        .doc-info {
+            right: -180px;
+            top: 155px;
+            width: 200px;
+        }
+        .patient-info {
+            left: -170px;
+            top: 155px;
+            width: 280px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+             $(".doc-popup").mouseover(function () {
+                 $(".doc-info").show();
+            });
+            $(".doc-info").mouseleave(function () {
+                $(".doc-info").hide();
+            });
+            $(".patient-popup").mouseover(function () {
+                $(".patient-info").show();
+            });
+            $(".patient-info").mouseleave(function () {
+                $(".patient-info").hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="motion-container">
+        <div class="motion"></div>
+        <div class="left-motion">
+            <img class="pulse patient-popup" src="images/location-marker.png" />
+            <img class="person" src="images/patient.png" />
+            <div class="white-box patient-info"><p><b>What kind of care do I need?<br />Where should I go?<br/>What kind of doctor do I need?</b></p>We can answer these questions and more.</p><p>Use our symptom guide to help you <a href="https://deaconess.com/Right-Care"><b style="color:#006892;">Choose the Right Care, at the Right Time, at the Right Place. </b></a></p></div>
+        </div>
+
+        <div class="right-motion">
+            <img class="pulse doc-popup" src="images/location-marker.png" />
+            <img class="person" src="images/doctor.png" />
+            <div class="white-box doc-info"><p>We make it easy to find just the right doctor for your wants and needs.</p><p><a style="color:#006892;" href="https://deaconess.com/Find-a-Doctor"><b>Find a doctor now</b></a></p></div>
+        </div>
+    </div>
+</body>
+</html>
